@@ -386,16 +386,28 @@ public class Main {
         }
 
         int[] newArr = new int[arr.length + count];
+        // Копирование элементов до вставки
         for (int i = 0; i < index; i++) {
             newArr[i] = arr[i];
         }
         System.out.println("Введите элементы:");
         for (int i = index; i < index + count; i++) {
-            newArr[i] = sc.nextInt();
+            while (true) {
+                if (sc.hasNextInt()) {
+                    newArr[i] = sc.nextInt();
+                    break;
+                } else {
+                    System.out.println("Ошибка: введите корректное целое число!");
+                    sc.next();
+                }
+            }
         }
+
+        // Копирование оставшихся элементов после вставки
         for (int i = index; i < arr.length; i++) {
             newArr[i + count] = arr[i];
         }
+        System.out.println("Элементы успешно добавлены");
         return newArr;
     }
 
@@ -477,7 +489,7 @@ public class Main {
         // Проверяем массив на сортировку
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] < arr[i - 1]) {
-                System.out.println("Ошибка: массив не отсортирован! Сначала отсортируйте его.");
+                System.out.println("Ошибка: массив не отсортирован! Сначала отсортируйте его");
                 return;
             }
         }
@@ -660,7 +672,7 @@ public class Main {
                 }
             } else {
                 System.out.println("Ошибка: введите корректное целое число!");
-                sc.next(); // очистка ввода
+                sc.next();
             }
         }
 
@@ -676,7 +688,7 @@ public class Main {
                 }
             } else {
                 System.out.println("Ошибка: введите корректное целое число!");
-                sc.next(); // очистка ввода
+                sc.next();
             }
         }
 
@@ -711,7 +723,7 @@ public class Main {
                 }
             } else {
                 System.out.println("Ошибка: введите корректное целое число!");
-                sc.next(); // очистка ввода
+                sc.next();
             }
         }
 
@@ -728,7 +740,7 @@ public class Main {
                 }
             } else {
                 System.out.println("Ошибка: введите корректное целое число!");
-                sc.next(); // очистка ввода
+                sc.next();
             }
         }
 
@@ -736,7 +748,16 @@ public class Main {
         System.out.println("Введите элементы массива:");
         for (int i = 0; i < line; i++) {
             for (int j = 0; j < column; j++) {
-                arrManual[i][j] = sc.nextInt();
+                while (true) {
+                    System.out.printf("Элемент [%d][%d]: ", i, j);
+                    if (sc.hasNextInt()) {
+                        arrManual[i][j] = sc.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Ошибка: введите корректное целое число!");
+                        sc.next();
+                    }
+                }
             }
         }
         System.out.println("Массив сформирован успешно!");
@@ -838,7 +859,7 @@ public class Main {
                 }
             } else {
                 System.out.println("Ошибка: введите корректное целое число!");
-                sc.next(); // очистка ввода
+                sc.next();
             }
         }
 
@@ -882,7 +903,7 @@ public class Main {
     }
 
 
-    // Добавление строки в начало массива
+    // Добавление строки в начало рваного массива
     static int[][] addLineJagged(int[][] arr){
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите количество элементов для добавления: ");
